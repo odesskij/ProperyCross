@@ -1,0 +1,37 @@
+<div>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <a href="#!/">
+                <h2>
+                    <span>PropertyCross</span>
+                </h2>
+            </a>
+
+        </div>
+    </md-toolbar>
+    <md-content flex layout-padding style="height: 590px">
+        <p>
+            Use the form below to search for houses to buy. You can search by place-name.
+        </p>
+
+        <md-input-container class="md-icon-float md-block">
+            <input ng-model="searchQuery" type="text"/>
+        </md-input-container>
+
+        <md-button class="md-raised md-primary" ng-disabled="!searchQuery"
+                   ng-click="$ctrl.goSearch({place_name: searchQuery})">
+            Go
+        </md-button>
+
+        <md-list flex ng-if="searches.length > 0">
+            <md-subheader class="md-no-sticky">Recent searches:</md-subheader>
+            <md-list-item class="md-1-line"
+                          ng-click="$ctrl.goSearch(search.query)"
+                          ng-repeat="search in searches">
+                <div class="md-list-item-text" layout="column">
+                    {{ search.query.place_name }} ({{ search.total_results }})
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-content>
+</div>

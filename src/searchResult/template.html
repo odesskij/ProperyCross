@@ -1,0 +1,73 @@
+<div>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <a href="#!/">
+                <h2>
+                    <span>PropertyCross</span>
+                </h2>
+            </a>
+            <span flex></span>
+            <h2 ng-if="result.response.listings.length > 0">
+                <span>{{ result.response.listings.length }} of {{ result.response.total_results }} matches</span>
+            </h2>
+        </div>
+    </md-toolbar>
+
+
+    <div flex layout-padding style="height: 590px">
+        <div layout="row" layout-sm="column" layout-align="space-around">
+            <md-button class="md-fab md-mini md-primary"
+                       ng-repeat="page in [
+                   - 2,
+                   - 1,
+                     0,
+                   + 1,
+                   + 2
+                  ]"
+                       ng-disabled="!$ctrl.hasPage(currentPage + page)"
+                       ng-click="$ctrl.goPage(currentPage + page)">
+            <span ng-if="$ctrl.hasPage(currentPage + page)">
+                {{ currentPage + page }}
+            </span>
+            </md-button>
+        </div>
+
+        <div layout="row" layout-sm="column" layout-align="space-around" ng-if="$LOADING">
+            <md-progress-circular md-diameter="100">
+            </md-progress-circular>
+        </div>
+
+        <md-list flex ng-if="result.response.listings.length > 0">
+            <md-list-item class="md-1-line"
+                          ng-click="$ctrl.goProperty($index)"
+                          ng-repeat="property in result.response.listings">
+                <img ng-src="{{ property.thumb_url }}" class="md-avatar"/>
+                <div class="md-list-item-text" layout="column">
+
+                    <div>{{ property.price_formatted }}</div>
+                    <div>{{ property.title | words:4 }}</div>
+                </div>
+            </md-list-item>
+        </md-list>
+        <div ng-if="result.response.listings.length === 0">Result is empty...</div>
+        <div layout="row" layout-sm="column" layout-align="space-around">
+            <md-button class="md-fab md-mini md-primary"
+                       ng-repeat="page in [
+                   - 2,
+                   - 1,
+                     0,
+                   + 1,
+                   + 2
+                  ]"
+                       ng-disabled="!$ctrl.hasPage(currentPage + page)"
+                       ng-click="$ctrl.goPage(currentPage + page)">
+            <span ng-if="$ctrl.hasPage(currentPage + page)">
+                {{ currentPage + page }}
+            </span>
+            </md-button>
+        </div>
+
+    </div>
+
+</div>
+

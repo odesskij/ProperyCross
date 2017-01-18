@@ -1,0 +1,37 @@
+<div>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <a href="#!/">
+                <h2>
+                    <span>PropertyCross</span>
+                </h2>
+            </a>
+            <span flex></span>
+            <h2 ng-if="result.response.listings.length > 0">
+                <span>{{ result.response.listings.length }} of {{ result.response.total_results }} matches</span>
+            </h2>
+        </div>
+    </md-toolbar>
+
+    <div flex layout-padding style="height: 590px">
+        <md-card>
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{ property.price_formatted }}</span>
+                    <span>{{ property.title }}</span>
+                </md-card-title-text>
+            </md-card-title>
+
+            <img ng-src="{{ property.img_url }}" class="md-card-image">
+            <md-card-content>
+                <p>
+                    <div ng-if="property.bedroom_number">{{ property.bedroom_number }} bedrooms</div>
+                    <div ng-if="property.bathroom_number">{{ property.bathroom_number }} bathrooms</div>
+                </p>
+                <p>
+                   {{ property.summary }}
+                </p>
+            </md-card-content>
+        </md-card>
+    </div>
+</div>
