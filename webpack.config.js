@@ -45,6 +45,10 @@ module.exports = {
         from: path.join(__dirname, 'src', 'index.html'),
         to:   path.join(__dirname, 'dist', 'index.html')
       },
+      {
+        from: path.join(__dirname, 'assets'),
+        to:   path.join(__dirname, 'dist')
+      },
     ]),
     new ExtractTextPlugin('[name].css')
   ]

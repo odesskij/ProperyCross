@@ -7,9 +7,11 @@
                 </h2>
             </a>
             <span flex></span>
-            <h2 ng-if="result.response.listings.length > 0">
-                <span>{{ result.response.listings.length }} of {{ result.response.total_results }} matches</span>
-            </h2>
+            <md-button ng-if="$ctrl.property"
+                       class="{{ $ctrl.favStorage.has($ctrl.property) ? 'md-fab md-mini' : 'md-icon-button' }} "
+                       aria-label="Favorite" ng-click="$ctrl.onFavoriteProperty($ctrl.property)">
+                <md-icon md-svg-icon="/images/fav.svg"></md-icon>
+            </md-button>
         </div>
     </md-toolbar>
 
@@ -17,19 +19,19 @@
         <md-card>
             <md-card-title>
                 <md-card-title-text>
-                    <span class="md-headline">{{ property.price_formatted }}</span>
-                    <span>{{ property.title }}</span>
+                    <span class="md-headline">{{ $ctrl.property.price_formatted }}</span>
+                    <span>{{ $ctrl.property.title }}</span>
                 </md-card-title-text>
             </md-card-title>
 
-            <img ng-src="{{ property.img_url }}" class="md-card-image">
+            <img ng-src="{{ $ctrl.property.img_url }}" class="md-card-image">
             <md-card-content>
                 <p>
-                    <div ng-if="property.bedroom_number">{{ property.bedroom_number }} bedrooms</div>
-                    <div ng-if="property.bathroom_number">{{ property.bathroom_number }} bathrooms</div>
+                <div ng-if="$ctrl.property.bedroom_number">{{ $ctrl.property.bedroom_number }} bedrooms</div>
+                <div ng-if="$ctrl.property.bathroom_number">{{ $ctrl.property.bathroom_number }} bathrooms</div>
                 </p>
                 <p>
-                   {{ property.summary }}
+                    {{ $ctrl.property.summary }}
                 </p>
             </md-card-content>
         </md-card>
